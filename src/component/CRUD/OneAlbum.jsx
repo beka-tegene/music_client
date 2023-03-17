@@ -5,7 +5,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 const deleteHandler = (id) => {
-  fetch("http://localhost:8080/song-delete", {
+  fetch("https://beka-songs.onrender.com/song-delete", {
     method: "POST",
     crossDomain: true,
     headers: {
