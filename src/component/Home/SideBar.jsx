@@ -55,13 +55,7 @@ const SideBar = () => {
               key={index}
             >
               <NavLink
-                variant="nav"
-                href={item.path}
-                sx={{
-                  textDecoration: "none",
-                  color: "black",
-                  fontSize: "1.2rem",
-                }}
+              to={item.path}
               >
                 <Flex
                   sx={{
