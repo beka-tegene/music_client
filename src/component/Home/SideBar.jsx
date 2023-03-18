@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Card, Flex, Image, Link, Text } from "rebass";
+import { Box, Card, Flex, Image, Text } from "rebass";
+import { NavLink } from "react-router-dom";
 import brandLogo from "../../img/Frame 4095.svg";
 import PlaylistAddCheckOutlinedIcon from "@mui/icons-material/PlaylistAddCheckOutlined";
 import AlbumOutlinedIcon from "@mui/icons-material/AlbumOutlined";
@@ -53,7 +54,7 @@ const SideBar = () => {
               }}
               key={index}
             >
-              <Link
+              <NavLink
                 variant="nav"
                 href={item.path}
                 sx={{
@@ -72,7 +73,7 @@ const SideBar = () => {
                   {item.Icons}
                   <Text>{item.name}</Text>
                 </Flex>
-              </Link>
+              </NavLink>
             </Card>
           ))}
         </Box>
