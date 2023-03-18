@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<AllList />} />
       <Route path="/album" element={<Album />} />
       <Route path="/create" element={<Import />} />
-      <Route path="/:album" element={<SinglePersonAlbum />} />
+      <Route path="/album/:album" element={<SinglePersonAlbum />} />
       <Route path="/edit/:id" element={<Update />} />
     </Routes>
   );
