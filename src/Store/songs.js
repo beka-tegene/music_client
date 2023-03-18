@@ -4,6 +4,7 @@ import { fetchInputData, fetchUpdate } from "./fatchData";
 const initialState = {
   InputData: [],
   UpdateData: [],
+  AlbumData: [],
 };
 
 const MusicUp = createSlice({
@@ -45,7 +46,7 @@ const MusicUp = createSlice({
     },
     AlbumGet(state) {},
     AlbumPut(state, action) {
-      state.InputData = action.payload;
+      state.AlbumData = action.payload;
     },
   },
 });

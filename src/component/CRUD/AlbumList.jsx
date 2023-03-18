@@ -5,7 +5,7 @@ import { AlbumGet } from "../../Store/songs";
 const AlbumList = () => {
   const dispatch = useDispatch();
 
-  const AlbumSongs = useSelector((state) => state.musicUp.InputData);
+  const AlbumSongs = useSelector((state) => state.musicUp.AlbumData);
 
   useEffect(() => {
     dispatch(AlbumGet());
@@ -30,7 +30,7 @@ const AlbumList = () => {
       >
         {!AlbumSongs && <Box as={"h3"}>No Record Data </Box>}
         {AlbumSongs &&
-          AlbumSongs.map((item, index) => (
+          AlbumSongs?.map((item, index) => (
             <Flex
               as={"a"}
               flexDirection={"column"}
