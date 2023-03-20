@@ -35,8 +35,6 @@ export const fetchGetAlbum = async () => {
 };
 
 export const fetchUpdate = async (Data) => {
-
-  console.log(Data);
   const updateData = fetch("https://beka-songs.onrender.com/update", {
     method: "POST",
     crossDomain: true,
