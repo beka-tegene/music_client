@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const fetchInputData = async (Data) => {
-  const createMusic = fetch("http://localhost:5000/create-music", {
+  const createMusic = fetch("https://beka-songs.onrender.com/create-music", {
     method: "POST",
     crossDomain: true,
     headers: {
@@ -25,19 +25,19 @@ export const fetchInputData = async (Data) => {
 };
 
 export const fetchGet = async () => {
-  const getMusic = await axios.get("http://localhost:5000/song-list");
+  const getMusic = await axios.get("https://beka-songs.onrender.com/song-list");
   return getMusic.data;
 };
 
 export const fetchGetAlbum = async () => {
-  const data = await axios.get("http://localhost:5000/album-list");
+  const data = await axios.get("https://beka-songs.onrender.com/album-list");
   return data.data.data;
 };
 
 export const fetchUpdate = async (Data) => {
 
   console.log(Data);
-  const updateData = fetch("http://localhost:5000/update", {
+  const updateData = fetch("https://beka-songs.onrender.com/update", {
     method: "POST",
     crossDomain: true,
     headers: {
@@ -61,7 +61,7 @@ export const fetchUpdate = async (Data) => {
 };
 
 export const fetchDelete = async (id) => {
-  const deleteData = fetch("http://localhost:5000/song-delete", {
+  const deleteData = fetch("https://beka-songs.onrender.com/song-delete", {
     method: "POST",
     crossDomain: true,
     headers: {
