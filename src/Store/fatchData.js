@@ -56,7 +56,7 @@ export const fetchUpdate = async (Data) => {
     }),
   });
   if (updateData) {
-    window.location.reload();
+    window.location.href = "/";
   }
 };
 
