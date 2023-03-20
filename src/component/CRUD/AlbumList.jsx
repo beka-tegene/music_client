@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Card, Flex, Image, Text } from "rebass";
+import { Link } from "react-router-dom";
+import { Box, Card, Image, Text } from "rebass";
 import { AlbumGet } from "../../Store/songs";
 const AlbumList = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const AlbumList = () => {
     dispatch(AlbumGet());
   }, [dispatch]);
   return (
-    <>
+    <Box>
       <Box
         as={"div"}
         p={2}
@@ -20,29 +21,15 @@ const AlbumList = () => {
       >
         {AlbumSongs.length} Album
       </Box>
-      <Flex
-        minHeight={"89vh"}
-        maxHeight={"89vh"}
-        overflow="scroll"
-        flexWrap="wrap"
-        sx={{ gap: "1rem" }}
+      <Box
+        as={'div'}
+        sx={{ gap: "3rem" , display:"flex" ,flexWrap: 'wrap'}}
         pl={4}
       >
         {!AlbumSongs && <Box as={"h3"}>No Record Data </Box>}
         {AlbumSongs &&
           AlbumSongs?.map((item, index) => (
-            <Flex
-              as={"a"}
-              flexDirection={"column"}
-              p={3}
-              key={index}
-              href={`/${item.person.album}`}
-              sx={{
-                minHeight: "40vh",
-                maxHeight: "40vh",
-                textDecoration: "none",
-              }}
-            >
+            <Link as={"a"} p={3} key={index} to={`/album/${item.person.album}`}>
               <Card width={200}>
                 <Image
                   src={item.person.artwork}
@@ -58,10 +45,10 @@ const AlbumList = () => {
                   {item.person.artist}
                 </Text>
               </Card>
-            </Flex>
+            </Link>
           ))}
-      </Flex>
-    </>
+      </Box>
+    </Box>
   );
 };
 

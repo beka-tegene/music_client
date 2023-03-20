@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchInputData, fetchUpdate } from "./fatchData";
 
 const initialState = {
   InputData: [],
   UpdateData: [],
+  deleteData: [],
   AlbumData: [],
 };
 
@@ -23,11 +23,9 @@ const MusicUp = createSlice({
         audio_music: newData.audio_music,
       });
 
-      fetchInputData(state.InputData);
     },
     MusicUpdate(state, actions) {
       const putData = actions.payload;
-      console.log(putData);
       state.UpdateData.push({
         id: putData.id,
         genre: putData.genre,
@@ -37,8 +35,12 @@ const MusicUp = createSlice({
         art_work: putData.art_work,
         audio_music: putData.audio_music,
       });
-
-      fetchUpdate(state.UpdateData);
+    },
+    MusicDelete(state, actions) {
+      const id = actions.payload;
+      state.deleteData.push({
+        id: id.id,
+      });
     },
     MusicGet(state) {},
     MusicPut(state, action) {
@@ -55,6 +57,7 @@ export default MusicUp.reducer;
 export const {
   MusicInput,
   MusicUpdate,
+  MusicDelete,
   MusicGet,
   MusicPut,
   AlbumPut,

@@ -58,13 +58,15 @@ const UpdateMusic = () => {
     const audio_music = musicInput;
     dispatch(
       MusicUpdate({
-        id,
-        genre,
-        title,
-        artist_name,
-        album_name,
-        art_work,
-        audio_music,
+        data: {
+          id,
+          genre,
+          title,
+          artist_name,
+          album_name,
+          art_work,
+          audio_music,
+        }
       })
     );
   };
@@ -96,9 +98,6 @@ const UpdateMusic = () => {
             <Box width={1 / 2} px={2}>
               <Label htmlFor="">Genre</Label>
               <Select id={""} ref={genreInput} defaultValue={item.genre}>
-                <option disabled selected>
-                  {}
-                </option>
                 <option>POP</option>
                 <option>Rock</option>
                 <option>R&B</option>

@@ -3,95 +3,76 @@ import DataTable from "react-data-table-component";
 import { Box } from "rebass";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-
-const deleteHandler = (id) => {
-  fetch("https://beka-songs.onrender.com/song-delete", {
-    method: "POST",
-    crossDomain: true,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify({ id }),
-  });
-  window.location.reload();
-};
-
-const columns = [
-  {
-    name: "Title",
-    selector: (row) => row.title,
-    sortable: true,
-  },
-  {
-    name: "name",
-    selector: (row) => row.artist_name,
-    sortable: true,
-  },
-  {
-    name: "Album",
-    selector: (row) => row.album_name,
-    sortable: true,
-  },
-  {
-    name: "Genre",
-    selector: (row) => row.genre,
-    sortable: true,
-  },
-  {
-    name: "Action",
-    selector: (row) => (
-      <Box>
-        <Box
-          as={"a"}
-          mx={2}
-          sx={{
-            color: "#3874cf",
-            "&:hover": { color: "#3874cf63" },
-          }}
-          href={`/edit/${row._id}`}
-        >
-          <EditOutlinedIcon />
-        </Box>
-        <Box
-          as={"a"}
-          sx={{
-            color: "#d44545",
-            "&:hover": { color: "#d4454563" },
-          }}
-          onClick={() => deleteHandler(row._id)}
-        >
-          <DeleteForeverOutlinedIcon />
-        </Box>
-      </Box>
-    ),
-  },
-];
+import { useDispatch } from "react-redux";
+import { MusicDelete } from "../../Store/songs";
+import { NavLink } from "react-router-dom";
 
 const PlayList = (props) => {
+  const columns = [
+    {
+      name: "Title",
+      selector: (row) => row.title,
+      sortable: true,
+    },
+    {
+      name: "name",
+      selector: (row) => row.artist_name,
+      sortable: true,
+    },
+    {
+      name: "Album",
+      selector: (row) => row.album_name,
+      sortable: true,
+    },
+    {
+      name: "Genre",
+      selector: (row) => row.genre,
+      sortable: true,
+    },
+    {
+      name: "Action",
+      selector: (row) => (
+        <Box>
+          <NavLink
+            as={"a"}
+            mx={2}
+            sx={{
+              color: "#3874cf",
+              "&:hover": { color: "#3874cf63" },
+            }}
+            to={`/edit/${row._id}`}
+          >
+            <EditOutlinedIcon />
+          </NavLink>
+          <Box
+            as={"a"}
+            sx={{
+              color: "#d44545",
+              "&:hover": { color: "#d4454563" },
+            }}
+            onClick={() => deleteHandler(row._id)}
+          >
+            <DeleteForeverOutlinedIcon />
+          </Box>
+        </Box>
+      ),
+    },
+  ];
+  const dispatch = useDispatch();
+  const deleteHandler = (id) => {
+    dispatch(MusicDelete({ id }));
+  };
   const toggleData = (row) => {
     props.onPlayMusic(row);
   };
-  const DUMMY_TABLE = props.DUMMY_MUSIC.map((item, index) => {
-    return {
-      _id: item._id,
-      genre: item.genre,
-      title: item.title,
-      artist_name: item.artist_name,
-      album_name: item.album_name,
-      art_work: item.art_work,
-      audio_music: item.audio_music,
-    };
-  });
-  const pop = DUMMY_TABLE.filter((item) => item.genre === "POP");
-  const rock = DUMMY_TABLE.filter((item) => item.genre === "Rock");
-  const alternative = DUMMY_TABLE.filter(
+  const pop = props.DUMMY_MUSIC.filter((item) => item.genre === "POP");
+  const rock = props.DUMMY_MUSIC.filter((item) => item.genre === "Rock");
+  const alternative = props.DUMMY_MUSIC.filter(
     (item) => item.genre === "Alternative"
   );
-  const RandB = DUMMY_TABLE.filter((item) => item.genre === "R&B");
-  const classical = DUMMY_TABLE.filter((item) => item.genre === "Classical");
-  const hipHop = DUMMY_TABLE.filter((item) => item.genre === "Hip-Hop");
+  const RandB = props.DUMMY_MUSIC.filter((item) => item.genre === "R&B");
+  const classical = props.DUMMY_MUSIC.filter((item) => item.genre === "Classical");
+  const hipHop = props.DUMMY_MUSIC.filter((item) => item.genre === "Hip-Hop");
   const customstayle = {
     headCells: {
       style: {
@@ -121,18 +102,30 @@ const PlayList = (props) => {
           gap: "1rem",
         }}
       >
-        <Box as={'span'}>{DUMMY_TABLE.length} All Songs</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{pop.length} POP</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{rock.length} Rock</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{alternative.length} Alternative</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{RandB.length} R&B</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{classical.length} Classical</Box>
-        <Box as={'span'} sx={{color: '#aaa' , fontSize: 15}}>{hipHop.length} Hip-Hop</Box>
+        <Box as={"span"}>{props.DUMMY_MUSIC.length} All Songs</Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {pop.length} POP
+        </Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {rock.length} Rock
+        </Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {alternative.length} Alternative
+        </Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {RandB.length} R&B
+        </Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {classical.length} Classical
+        </Box>
+        <Box as={"span"} sx={{ color: "#aaa", fontSize: 15 }}>
+          {hipHop.length} Hip-Hop
+        </Box>
       </Box>
-      {DUMMY_TABLE && (
+      {props.DUMMY_MUSIC && (
         <DataTable
           columns={columns}
-          data={DUMMY_TABLE}
+          data={props.DUMMY_MUSIC}
           fixedHeader
           onRowClicked={toggleData}
           highlightOnHover

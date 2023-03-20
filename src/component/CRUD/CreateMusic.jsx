@@ -51,12 +51,14 @@ const CreateMusic = () => {
 
     dispatch(
       MusicInput({
-        genre,
-        title,
-        artist_name,
-        album_name,
-        art_work,
-        audio_music,
+        data: {
+          genre,
+          title,
+          artist_name,
+          album_name,
+          art_work,
+          audio_music,
+        },
       })
     );
   };
