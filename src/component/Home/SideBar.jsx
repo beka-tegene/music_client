@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, Flex, Image, Text } from "rebass";
 import { NavLink } from "react-router-dom";
-import brandLogo from "../../img/Frame 4095.svg";
+import brandLogo from "../../img/Frame 4095.png";
 import PlaylistAddCheckOutlinedIcon from "@mui/icons-material/PlaylistAddCheckOutlined";
 import AlbumOutlinedIcon from "@mui/icons-material/AlbumOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
